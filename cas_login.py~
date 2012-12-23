@@ -3,7 +3,7 @@
 # Author: Zhu Jinliang
 # Email: zhujinlianghust#gmail.com
 """
-This script is for UCAS student to login the network in Chinese Academy of Sciences.
+This script is for login the network in Chinese Academy of Sciences.
 """
 # 若第一次使用，注意先在user_data中的username和password中修改自己的信息
 
