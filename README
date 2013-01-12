@@ -5,6 +5,9 @@ of Sciences.
 
 若第一次使用，注意先在user_data中的username和password中修改自己的信息。
 
+Python version: above 2.5 but lower than 3.
+If your Python version is above 3, it will report syntax error.
+
 How to use:
 ----------
 Run it like:
