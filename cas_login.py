@@ -14,7 +14,7 @@ import urllib2
 import cookielib
 
 user_data = {
-			"username": "2012***", # 用你的密码替换2012*** 
+			"username": "2012***", # 用你的用户名替换2012*** 
 			"password": "{TEXT}123456", # 用你的密码替换123456，注意保留{TEXT}
 			"drop": "3", 
 			"type": "1", 
