@@ -3,12 +3,12 @@
 # Author: Zhu Jinliang
 # Email: zhujinlianghust#gmail.com
 """
-This script is for UCAS student to login the network in Chinese Academy of Sciences.
+This script is for login the network in Chinese Academy of Sciences.
 """
 # 若第一次使用，注意先在user_data中的username和password中修改自己的信息
 
-
 import sys
+import os
 import urllib
 import urllib2
 import cookielib
@@ -20,6 +20,11 @@ user_data = {
 			"type": "1", 
 			"n": "100" 
 			}
+
+def notify(message):
+	image = "cas.png"
+	notify_command = "notify-send -i %s '%s'"% (image, message)
+	os.system(notify_command)
 
 
 def login():
@@ -56,14 +61,20 @@ def use_net(opener, post_data):
 	request = urllib2.Request(login_url, post_data, headers)
 	try:
 		response = opener.open(request)
-		print user_data['username'], u"你已经成功登录"
+		msg =  user_data['username'] + " " +  "你已经成功登录"
+		print msg
+		notify(msg)
 	except urllib2.URLError:
-		print user_data['username'], u"登录失败"
+		msg =  user_data['username'] + " " + "登录失败"
+		print msg
+		notify(msg)
 
 def logout(opener, user_data):
 	logout_url = 'http://auth.ucas.ac.cn/cgi-bin/do_logout'
 	opener.open(logout_url)
-	print user_data['username'], u"你已经成功登出"
+	msg = user_data['username'] + " " + "你已经成功登出"
+	print msg
+	notify(msg)
 
 
 if __name__ == "__main__":
@@ -71,9 +82,9 @@ if __name__ == "__main__":
 			"1": "1",
 			"2": "3",
 			"3": "0"}
-	display_mode = {"1": u"城域",
-					"2": u"国内",
-					"3": u"国际"}	
+	display_mode = {"1": "城域",
+					"2": "国内",
+					"3": "国际"}	
 	help_info = """\
 Usage: python cas_login.py [option]
 You can only input one option.
@@ -99,10 +110,13 @@ python cas_login.py 0
 			option = sys.argv[1]
 			# Change connection mode
 			user_data["drop"] = mode[option]
-			print u"连接%s..."% display_mode[option]
+			msg = "连接%s..."% display_mode[option]
+			print msg
+			notify(msg)
 			use_net(opener, user_data)
 	else:
-		print u"正在登出..."
+		print "正在登出..."
+		notify("正在登出...")
 		logout(opener, user_data)
 
 
